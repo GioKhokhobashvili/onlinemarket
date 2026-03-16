@@ -1,4 +1,7 @@
+package order;
+
 public class PaymentDetails {
+
     private String paymentMethod;
     private String transactionStatus;
 

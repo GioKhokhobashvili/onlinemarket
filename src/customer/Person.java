@@ -1,9 +1,10 @@
-import java.time.LocalDate;
-public class Customer {
-    private String name;
-    private String surname;
-    private Address address;
-    private ContactInfo contactInfo;
+package customer;
+
+public class Person {
+
+    protected String name;
+    protected String surname;
+    protected ContactInfo contactInfo;
 
     public String getName() {
         return name;
@@ -21,14 +22,6 @@ public class Customer {
         this.surname = surname;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     public ContactInfo getContactInfo() {
         return contactInfo;
     }
@@ -37,10 +30,9 @@ public class Customer {
         this.contactInfo = contactInfo;
     }
 
-    public Customer(String name, String surname, Address address, ContactInfo contactInfo) {
+    public Person(String name, String surname, ContactInfo contactInfo) {
         this.name = name;
         this.surname = surname;
-        this.address = address;
         this.contactInfo = contactInfo;
     }
 }

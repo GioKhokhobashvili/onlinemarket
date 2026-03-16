@@ -1,10 +1,13 @@
+package product;
+
 import java.math.BigDecimal;
 
-public class Product {
+public abstract class Product {
     private String name;
     private BigDecimal price;
     private Category category;
     private Manufacturer manufacturer;
+    public abstract void printProductDetails();
 
     public String getName() {
         return name;
