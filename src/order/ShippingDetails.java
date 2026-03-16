@@ -1,4 +1,7 @@
+package order;
+
 public class ShippingDetails {
+
     private String courierName;
     private String trackingNumber;
 
