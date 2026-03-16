@@ -1,4 +1,9 @@
+package market;
+
+import order.Order;
+
 public class Market {
+
     private String name;
     private Order[] orders;
 

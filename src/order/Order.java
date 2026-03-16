@@ -1,6 +1,11 @@
+package order;
+
+import customer.Customer;
 import java.time.LocalDateTime;
 
 public class Order {
+
+    public static int totalOrdersPlaced = 0;
     private ShippingDetails shippingDetails;
     private PaymentDetails paymentDetails;
     private OrderItem[] orderItems;
@@ -53,5 +58,6 @@ public class Order {
         this.orderItems = orderItems;
         this.shippingDetails = shippingDetails;
         this.paymentDetails = paymentDetails;
+        totalOrdersPlaced++;
     }
     }
