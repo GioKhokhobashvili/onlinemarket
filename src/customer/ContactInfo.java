@@ -7,6 +7,11 @@ public class ContactInfo {
     private String email;
     private String number;
 
+    public ContactInfo(String email, String number) {
+        this.email = email;
+        this.number = number;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -23,10 +28,7 @@ public class ContactInfo {
         this.number = number;
     }
 
-    public ContactInfo(String email, String number) {
-        this.email = email;
-        this.number = number;
-    }
+
 
     @Override
     public String toString() {

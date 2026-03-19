@@ -1,13 +1,25 @@
 package product;
 
+import interfaces.Pricable;
+import interfaces.Displayable;
+
 import java.math.BigDecimal;
 
-public abstract class Product {
+public abstract class Product  implements Pricable, Displayable {
+
     private String name;
     private BigDecimal price;
     private Category category;
     private Manufacturer manufacturer;
+
     public abstract void printProductDetails();
+
+    public Product(String name, BigDecimal price, Category category, Manufacturer manufacturer) {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+        this.manufacturer = manufacturer;
+    }
 
     public String getName() {
         return name;
@@ -17,6 +29,7 @@ public abstract class Product {
         this.name = name;
     }
 
+    @Override
     public BigDecimal getPrice() {
         return price;
     }
@@ -41,10 +54,6 @@ public abstract class Product {
         this.manufacturer = manufacturer;
     }
 
-    public Product(String name, BigDecimal price, Category category, Manufacturer manufacturer) {
-        this.name = name;
-        this.price = price;
-        this.category = category;
-        this.manufacturer = manufacturer;
-    }
+
+
 }

@@ -6,6 +6,12 @@ public class Customer extends Person {
 
     private Address address;
 
+    public Customer(String name, String surname, Address address, ContactInfo contactInfo) {
+        super(name, surname, contactInfo);
+        this.address = address;
+
+    }
+
     public String getName() {
         return name;
     }
@@ -38,9 +44,5 @@ public class Customer extends Person {
         this.contactInfo = contactInfo;
     }
 
-    public Customer(String name, String surname, Address address, ContactInfo contactInfo) {
-        super(name, surname, contactInfo);
-        this.address = address;
 
-    }
 }

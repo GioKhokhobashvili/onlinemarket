@@ -6,6 +6,12 @@ public class PhysicalProduct extends Product {
 
     private double weightInKg;
 
+    public PhysicalProduct(String name, BigDecimal price, Category category, Manufacturer manufacturer, double weightInKg) {
+        super(name, price, category, manufacturer);
+        this.weightInKg = weightInKg;
+
+    }
+
     public double getWeightInKg() {
         return weightInKg;
     }
@@ -14,15 +20,16 @@ public class PhysicalProduct extends Product {
         this.weightInKg = weightInKg;
     }
 
-    public PhysicalProduct(String name, BigDecimal price, Category category, Manufacturer manufacturer, double weightInKg) {
-        super(name, price, category, manufacturer);
-        this.weightInKg = weightInKg;
 
-    }
 
     @Override
     public void printProductDetails() {
         System.out.println("Physical Product: " + getName() + " | Weight: " + weightInKg + "kg");
 
+    }
+
+    @Override
+    public void display() {
+        System.out.println(getName() + " - " + getPrice());
     }
 }

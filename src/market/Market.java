@@ -4,6 +4,11 @@ import order.Order;
 
 public class Market {
 
+    public Market(String name, Order[] orders) {
+        this.name = name;
+        this.orders = orders;
+    }
+
     private String name;
     private Order[] orders;
 
@@ -23,10 +28,6 @@ public class Market {
         this.orders = orders;
     }
 
-    public Market(String name, Order[] orders) {
-        this.name = name;
-        this.orders = orders;
 
-    }
 }
 

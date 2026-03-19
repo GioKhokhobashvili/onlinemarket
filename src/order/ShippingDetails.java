@@ -1,9 +1,18 @@
 package order;
 
-public class ShippingDetails {
+import interfaces.Shippable;
+
+public class ShippingDetails extends OrderDetail implements Shippable {
 
     private String courierName;
     private String trackingNumber;
+
+    public ShippingDetails(int id, String courierName, String trackingNumber) {
+        super(id, "Shipping");
+        this.courierName = courierName;
+        this.trackingNumber = trackingNumber;
+    }
+
 
     public String getCourierName() {
         return courierName;
@@ -21,8 +30,8 @@ public class ShippingDetails {
         this.trackingNumber = trackingNumber;
     }
 
-    public ShippingDetails(String courierName, String trackingNumber) {
-        this.courierName = courierName;
-        this.trackingNumber = trackingNumber;
+    @Override
+    public String getShippingInfo() {
+        return courierName + " - " + trackingNumber;
     }
 }

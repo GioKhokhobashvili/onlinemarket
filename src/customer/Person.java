@@ -6,6 +6,12 @@ public class Person {
     protected String surname;
     protected ContactInfo contactInfo;
 
+    public Person(String name, String surname, ContactInfo contactInfo) {
+        this.name = name;
+        this.surname = surname;
+        this.contactInfo = contactInfo;
+    }
+
     public String getName() {
         return name;
     }
@@ -30,9 +36,5 @@ public class Person {
         this.contactInfo = contactInfo;
     }
 
-    public Person(String name, String surname, ContactInfo contactInfo) {
-        this.name = name;
-        this.surname = surname;
-        this.contactInfo = contactInfo;
-    }
+
 }

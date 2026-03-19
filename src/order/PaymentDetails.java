@@ -1,9 +1,17 @@
 package order;
 
-public class PaymentDetails {
+import interfaces.Payable;
+
+public class PaymentDetails extends OrderDetail implements Payable {
 
     private String paymentMethod;
     private String transactionStatus;
+
+    public PaymentDetails(int id,String paymentMethod, String transactionStatus) {
+        super(id,"Payment");
+        this.paymentMethod = paymentMethod;
+        this.transactionStatus = transactionStatus;
+    }
 
     public String getPaymentMethod() {
         return paymentMethod;
@@ -21,8 +29,8 @@ public class PaymentDetails {
         this.transactionStatus = transactionStatus;
     }
 
-    public PaymentDetails(String paymentMethod, String transactionStatus) {
-        this.paymentMethod = paymentMethod;
-        this.transactionStatus = transactionStatus;
+    @Override
+    public String getPaymentInfo() {
+        return paymentMethod + " - " + transactionStatus;
     }
 }

@@ -2,29 +2,50 @@ package order;
 
 import customer.Customer;
 import java.time.LocalDateTime;
+import interfaces.Shippable;
+import interfaces.Payable;
 
 public class Order {
 
     public static int totalOrdersPlaced = 0;
-    private ShippingDetails shippingDetails;
-    private PaymentDetails paymentDetails;
+
+    private Shippable shippingDetails;
+    private Payable paymentDetails;
     private OrderItem[] orderItems;
     private Customer customer;
     private LocalDateTime localDateTime;
 
-    public ShippingDetails getShippingDetails() {
+    public Order(LocalDateTime localDateTime, Customer customer, OrderItem[] orderItems,
+                 Shippable shippingDetails, Payable paymentDetails) {
+        this.localDateTime = localDateTime;
+        this.customer = customer;
+        this.orderItems = orderItems;
+        this.shippingDetails = shippingDetails;
+        this.paymentDetails = paymentDetails;
+        totalOrdersPlaced++;
+    }
+
+    public static int getTotalOrdersPlaced() {
+        return totalOrdersPlaced;
+    }
+
+    public static void setTotalOrdersPlaced(int totalOrdersPlaced) {
+        Order.totalOrdersPlaced = totalOrdersPlaced;
+    }
+
+    public Shippable getShippingDetails() {
         return shippingDetails;
     }
 
-    public void setShippingDetails(ShippingDetails shippingDetails) {
+    public void setShippingDetails(Shippable shippingDetails) {
         this.shippingDetails = shippingDetails;
     }
 
-    public PaymentDetails getPaymentDetails() {
+    public Payable getPaymentDetails() {
         return paymentDetails;
     }
 
-    public void setPaymentDetails(PaymentDetails paymentDetails) {
+    public void setPaymentDetails(Payable paymentDetails) {
         this.paymentDetails = paymentDetails;
     }
 
@@ -51,13 +72,4 @@ public class Order {
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
     }
-
-    public Order(LocalDateTime localDateTime, Customer customer, OrderItem[] orderItems, ShippingDetails shippingDetails, PaymentDetails paymentDetails) {
-        this.localDateTime = localDateTime;
-        this.customer = customer;
-        this.orderItems = orderItems;
-        this.shippingDetails = shippingDetails;
-        this.paymentDetails = paymentDetails;
-        totalOrdersPlaced++;
-    }
-    }
+}
