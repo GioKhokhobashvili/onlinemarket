@@ -4,6 +4,8 @@ import customer.Customer;
 import java.time.LocalDateTime;
 import interfaces.Shippable;
 import interfaces.Payable;
+import exceptions.EmptyCartException;
+import exceptions.PaymentException;
 
 public class Order {
 
@@ -17,12 +19,21 @@ public class Order {
 
     public Order(LocalDateTime localDateTime, Customer customer, OrderItem[] orderItems,
                  Shippable shippingDetails, Payable paymentDetails) {
+        if (orderItems == null || orderItems.length == 0) {
+            throw new EmptyCartException("You cannot create an order with zero items");
+        }
         this.localDateTime = localDateTime;
         this.customer = customer;
         this.orderItems = orderItems;
         this.shippingDetails = shippingDetails;
         this.paymentDetails = paymentDetails;
         totalOrdersPlaced++;
+    }
+
+    public void processCheckout() throws PaymentException {
+        if (paymentDetails == null) {
+            throw new PaymentException("No payment details are provided");
+        }
     }
 
     public static int getTotalOrdersPlaced() {
@@ -54,6 +65,9 @@ public class Order {
     }
 
     public void setOrderItems(OrderItem[] orderItems) {
+        if (orderItems == null || orderItems.length == 0) {
+            throw new EmptyCartException("Order items cannot be empty");
+        }
         this.orderItems = orderItems;
     }
 

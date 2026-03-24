@@ -1,14 +1,22 @@
 package customer;
 import customer.Address;
 import customer.ContactInfo;
+import exceptions.InvalidAgeException;
 
 public class Customer extends Person {
 
     private Address address;
+    private int age;
 
-    public Customer(String name, String surname, Address address, ContactInfo contactInfo) {
+    public Customer(String name, String surname, Address address, ContactInfo contactInfo, int age) {
         super(name, surname, contactInfo);
+
+        if (age < 18){
+            throw new InvalidAgeException("Customer must be 18 or older");
+        }
+
         this.address = address;
+        this.age = age;
 
     }
 
@@ -34,6 +42,17 @@ public class Customer extends Person {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age < 18) {
+            throw new InvalidAgeException("Customer must be 18 or older");
+        }
+        this.age = age;
     }
 
     public ContactInfo getContactInfo() {

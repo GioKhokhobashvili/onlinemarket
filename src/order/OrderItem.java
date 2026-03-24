@@ -1,6 +1,7 @@
 package order;
 
 import product.Product;
+import exceptions.OutOfStockException;
 
 public class OrderItem {
 
@@ -8,6 +9,9 @@ public class OrderItem {
     private int quantity;
 
     public OrderItem(Product product, int quantity) {
+        if (quantity <= 0) {
+            throw new OutOfStockException("Quantity must be at least 1");
+        }
         this.product = product;
         this.quantity = quantity;
     }
@@ -25,6 +29,9 @@ public class OrderItem {
     }
 
     public void setQuantity(int quantity) {
+        if (quantity <= 0) {
+            throw new OutOfStockException("Quantity must be at least 1");
+        }
         this.quantity = quantity;
     }
 

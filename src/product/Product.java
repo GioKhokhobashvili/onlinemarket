@@ -2,6 +2,7 @@ package product;
 
 import interfaces.Pricable;
 import interfaces.Displayable;
+import exceptions.InvalidPriceException;
 
 import java.math.BigDecimal;
 
@@ -15,6 +16,9 @@ public abstract class Product  implements Pricable, Displayable {
     public abstract void printProductDetails();
 
     public Product(String name, BigDecimal price, Category category, Manufacturer manufacturer) {
+        if (price != null && price.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidPriceException("Price cannot be negative");
+        }
         this.name = name;
         this.price = price;
         this.category = category;
@@ -35,6 +39,9 @@ public abstract class Product  implements Pricable, Displayable {
     }
 
     public void setPrice(BigDecimal price) {
+        if (price != null && price.compareTo(BigDecimal.ZERO) < 0) {
+            throw new InvalidPriceException("Price cannot be negative");
+        }
         this.price = price;
     }
 

@@ -1,8 +1,10 @@
 package product;
 
+import interfaces.Taxable;
+
 import java.math.BigDecimal;
 
-public class DigitalProduct extends Product{
+public class DigitalProduct extends Product implements Taxable {
 
     private String downloadLink;
 
@@ -20,7 +22,10 @@ public class DigitalProduct extends Product{
     }
 
 
-
+    @Override
+    public double calculateTaxAmount() {
+        return this.getPrice().doubleValue() * 0.05;
+    }
     @Override
     public void printProductDetails() {
         System.out.println("Digital Product: " + getName() + " | Download: " + downloadLink);
@@ -30,6 +35,8 @@ public class DigitalProduct extends Product{
     @Override
     public void display() {
         System.out.println(getName() + " - " + getPrice());
+
+
     }
 }
 

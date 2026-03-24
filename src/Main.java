@@ -1,6 +1,7 @@
 import customer.Address;
 import customer.ContactInfo;
 import customer.Customer;
+import exceptions.PaymentException;
 import market.Market;
 import order.Order;
 import order.OrderItem;
@@ -21,17 +22,29 @@ public class Main {
         ProductService service = new ProductService();
         Address address = new Address("Tbilisi", "Kartozia", "0163");
         ContactInfo contactInfo = new ContactInfo("giorgi@gmail.com", "+995 555-555-555");
-        Customer customer = new Customer("Giorgi", "Khokh", address, contactInfo);
+        Customer customer = new Customer("Giorgi", "Khokh", address, contactInfo, 25);
         ShippingDetails shipping = new ShippingDetails(1, "FedEX", "GJE129401240");
         PaymentDetails payment = new PaymentDetails(2, "Credit Card", "Approved");
         OrderItem item1 = new OrderItem(laptop, 2);
         OrderItem[] cart = {item1};
         Order firstOrder = new Order (LocalDateTime.now(), customer, cart, shipping, payment);
         Order[] allOrders = { firstOrder };
-        Market market = new Market("Amazon Georgia", allOrders);
-        System.out.println("Welcome to " + market.getName());
-        System.out.println("Customer: " + market.getOrders()[0].getCustomer().getName());
-        service.displayAnyProduct(laptop);
-        service.displayAnyProduct(software);
-}
+        try (Market market = new Market("Amazon Georgia", allOrders)) {
+
+            System.out.println("Welcome to " + market.getName());
+            System.out.println("Customer: " + market.getOrders()[0].getCustomer().getName());
+
+            boolean isBankDown = true;
+            if (isBankDown) {
+                throw new PaymentException("Bank servers are down, transaction failed.");
+            }
+
+        } catch (PaymentException e) {
+            System.out.println("Please try using a different credit card.");
+
+        } catch (Exception e) {
+            System.out.println("SYSTEM ERROR: " + e.getMessage());
+        }
+
+    }
 }

@@ -2,7 +2,7 @@ package market;
 
 import order.Order;
 
-public class Market {
+public class Market implements AutoCloseable {
 
     public Market(String name, Order[] orders) {
         this.name = name;
@@ -28,6 +28,10 @@ public class Market {
         this.orders = orders;
     }
 
+    @Override
+    public void close() throws Exception {
+        System.out.println("Closed Safely");
 
+    }
 }
 
