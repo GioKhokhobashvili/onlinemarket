@@ -12,6 +12,7 @@ public class Category {
         this.description = description;
 
     }
+
     public String getName() {
         return name;
     }
@@ -27,7 +28,6 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
 
     @Override

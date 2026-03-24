@@ -26,6 +26,7 @@ public class DigitalProduct extends Product implements Taxable {
     public double calculateTaxAmount() {
         return this.getPrice().doubleValue() * 0.05;
     }
+
     @Override
     public void printProductDetails() {
         System.out.println("Digital Product: " + getName() + " | Download: " + downloadLink);

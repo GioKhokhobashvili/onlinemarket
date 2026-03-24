@@ -7,8 +7,8 @@ public class PaymentDetails extends OrderDetail implements Payable {
     private String paymentMethod;
     private String transactionStatus;
 
-    public PaymentDetails(int id,String paymentMethod, String transactionStatus) {
-        super(id,"Payment");
+    public PaymentDetails(int id, String paymentMethod, String transactionStatus) {
+        super(id, "Payment");
         this.paymentMethod = paymentMethod;
         this.transactionStatus = transactionStatus;
     }

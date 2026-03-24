@@ -6,7 +6,7 @@ import exceptions.InvalidPriceException;
 
 import java.math.BigDecimal;
 
-public abstract class Product  implements Pricable, Displayable {
+public abstract class Product implements Pricable, Displayable {
 
     private String name;
     private BigDecimal price;
@@ -60,7 +60,6 @@ public abstract class Product  implements Pricable, Displayable {
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
-
 
 
 }

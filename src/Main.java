@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Category electronics = new Category("Electronics", "Devices");
         Manufacturer apple = new Manufacturer("Apple", "USA");
         Product laptop = new PhysicalProduct("Macbook Pro", new BigDecimal("1999.99"), electronics, apple, 2.5);
@@ -22,28 +22,29 @@ public class Main {
         ProductService service = new ProductService();
         Address address = new Address("Tbilisi", "Kartozia", "0163");
         ContactInfo contactInfo = new ContactInfo("giorgi@gmail.com", "+995 555-555-555");
-        Customer customer = new Customer("Giorgi", "Khokh", address, contactInfo, 25);
+        Customer customer = new Customer("Giorgi", "Khokh", address, contactInfo,25);
         ShippingDetails shipping = new ShippingDetails(1, "FedEX", "GJE129401240");
         PaymentDetails payment = new PaymentDetails(2, "Credit Card", "Approved");
         OrderItem item1 = new OrderItem(laptop, 2);
         OrderItem[] cart = {item1};
-        Order firstOrder = new Order (LocalDateTime.now(), customer, cart, shipping, payment);
-        Order[] allOrders = { firstOrder };
+        Order firstOrder = new Order(LocalDateTime.now(), customer, cart, shipping, payment);
+        Order[] allOrders = {firstOrder};
         try (Market market = new Market("Amazon Georgia", allOrders)) {
 
             System.out.println("Welcome to " + market.getName());
             System.out.println("Customer: " + market.getOrders()[0].getCustomer().getName());
 
-            boolean isBankDown = true;
-            if (isBankDown) {
-                throw new PaymentException("Bank servers are down, transaction failed.");
-            }
+            firstOrder.processCheckout();
 
         } catch (PaymentException e) {
+            System.out.println("Payment Error: " + e.getMessage());
             System.out.println("Please try using a different credit card.");
 
         } catch (Exception e) {
             System.out.println("SYSTEM ERROR: " + e.getMessage());
+
+        } finally {
+            System.out.println("Transaction process finished");
         }
 
     }
