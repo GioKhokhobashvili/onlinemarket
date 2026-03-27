@@ -2,6 +2,9 @@ package order;
 
 import customer.Customer;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Objects;
 import interfaces.Shippable;
 import interfaces.Payable;
 import exceptions.EmptyCartException;
@@ -13,18 +16,18 @@ public class Order {
 
     private Shippable shippingDetails;
     private Payable paymentDetails;
-    private OrderItem[] orderItems;
+    private List<OrderItem> orderItems;
     private Customer customer;
     private LocalDateTime localDateTime;
 
-    public Order(LocalDateTime localDateTime, Customer customer, OrderItem[] orderItems,
+    public Order(LocalDateTime localDateTime, Customer customer, List<OrderItem> orderItems,
                  Shippable shippingDetails, Payable paymentDetails) {
-        if (orderItems == null || orderItems.length == 0) {
+        if (orderItems == null || orderItems.isEmpty()) {
             throw new EmptyCartException("You cannot create an order with zero items");
         }
         this.localDateTime = localDateTime;
         this.customer = customer;
-        this.orderItems = orderItems;
+        this.orderItems = new ArrayList<>(orderItems);
         this.shippingDetails = shippingDetails;
         this.paymentDetails = paymentDetails;
         totalOrdersPlaced++;
@@ -60,12 +63,12 @@ public class Order {
         this.paymentDetails = paymentDetails;
     }
 
-    public OrderItem[] getOrderItems() {
+    public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(OrderItem[] orderItems) {
-        if (orderItems == null || orderItems.length == 0) {
+    public void setOrderItems(List<OrderItem> orderItems) {
+        if (orderItems == null || orderItems.isEmpty()) {
             throw new EmptyCartException("Order items cannot be empty");
         }
         this.orderItems = orderItems;
@@ -85,5 +88,19 @@ public class Order {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(customer, order.customer) &&
+                Objects.equals(localDateTime, order.localDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customer, localDateTime);
     }
 }

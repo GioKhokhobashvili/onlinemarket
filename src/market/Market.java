@@ -1,16 +1,18 @@
 package market;
 
 import order.Order;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Market implements AutoCloseable {
 
-    public Market(String name, Order[] orders) {
-        this.name = name;
-        this.orders = orders;
-    }
-
     private String name;
-    private Order[] orders;
+    private Set<Order> orders;
+
+    public Market(String name, Set<Order> orders) {
+        this.name = name;
+        this.orders = new HashSet<>(orders);
+    }
 
     public String getName() {
         return name;
@@ -20,18 +22,16 @@ public class Market implements AutoCloseable {
         this.name = name;
     }
 
-    public Order[] getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Order[] orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 
     @Override
     public void close() throws Exception {
         System.out.println("Closed Safely");
-
     }
 }
-
