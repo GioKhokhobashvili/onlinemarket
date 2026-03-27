@@ -36,10 +36,10 @@ public class Main {
 
         OrderItem item1 = new OrderItem(laptop, 2);
 
-        List<OrderItem> cart = new ArrayList<>();
-        cart.add(item1);
+        List<OrderItem> cartItems = new ArrayList<>();
+        cartItems.add(item1);
 
-        Order firstOrder = new Order(LocalDateTime.now(), customer, cart, shipping, payment);
+        Order firstOrder = new Order(LocalDateTime.now(), customer, cartItems, shipping, payment);
 
         Set<Order> allOrders = new HashSet<>();
         allOrders.add(firstOrder);
@@ -52,8 +52,8 @@ public class Main {
 
         DataWrapper<Customer> customerWrapper = new DataWrapper<>(customer);
 
-        OrderItem firstCartItem = cart.get(0);
-        for (OrderItem item : cart) {
+        OrderItem firstCartItem = cartItems.get(0);
+        for (OrderItem item : cartItems) {
             item.getQuantity();
         }
 
@@ -68,7 +68,7 @@ public class Main {
         }
 
         boolean isRepoEmpty = productRepo.isEmpty();
-        int cartSize = cart.size();
+        int cartSize = cartItems.size();
         customerMap.remove("test@gmail.com");
 
         try (Market market = new Market("Amazon Georgia", allOrders)) {
