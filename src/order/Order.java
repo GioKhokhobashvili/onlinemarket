@@ -3,7 +3,6 @@ package order;
 import customer.Customer;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 import interfaces.Shippable;
 import interfaces.Payable;
@@ -27,7 +26,7 @@ public class Order {
         }
         this.localDateTime = localDateTime;
         this.customer = customer;
-        this.orderItems = new ArrayList<>(orderItems);
+        this.orderItems = orderItems;
         this.shippingDetails = shippingDetails;
         this.paymentDetails = paymentDetails;
         totalOrdersPlaced++;
