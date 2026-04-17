@@ -1,5 +1,6 @@
 package com.solvd.market.product;
 
+import com.solvd.market.enums.ProductCondition;
 import com.solvd.market.exceptions.InvalidPriceException;
 import com.solvd.market.interfaces.Displayable;
 import com.solvd.market.interfaces.Pricable;
@@ -12,10 +13,11 @@ public abstract class Product implements Pricable, Displayable {
     private BigDecimal price;
     private Category category;
     private Manufacturer manufacturer;
+    private ProductCondition condition;
 
     public abstract void printProductDetails();
 
-    public Product(String name, BigDecimal price, Category category, Manufacturer manufacturer) {
+    public Product(String name, BigDecimal price, Category category, Manufacturer manufacturer, ProductCondition condition) {
         if (price != null && price.compareTo(BigDecimal.ZERO) < 0) {
             throw new InvalidPriceException("Price cannot be negative");
         }
@@ -23,6 +25,7 @@ public abstract class Product implements Pricable, Displayable {
         this.price = price;
         this.category = category;
         this.manufacturer = manufacturer;
+        this.condition = condition;
     }
 
     public String getName() {
@@ -61,5 +64,11 @@ public abstract class Product implements Pricable, Displayable {
         this.manufacturer = manufacturer;
     }
 
+    public ProductCondition getCondition() {
+        return condition;
+    }
 
+    public void setCondition(ProductCondition condition) {
+        this.condition = condition;
+    }
 }

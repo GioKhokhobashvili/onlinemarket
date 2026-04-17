@@ -6,4 +6,5 @@ import com.solvd.market.order.Order;
 public interface OrderAction {
 
     void perform(Order order);
+
 }

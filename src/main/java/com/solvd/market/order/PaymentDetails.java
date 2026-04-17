@@ -1,16 +1,19 @@
 package com.solvd.market.order;
 
+import com.solvd.market.enums.PaymentType;
 import com.solvd.market.interfaces.Payable;
 
 public class PaymentDetails extends OrderDetail implements Payable {
 
     private String paymentMethod;
     private String transactionStatus;
+    private PaymentType paymentType;
 
-    public PaymentDetails(int id, String paymentMethod, String transactionStatus) {
+    public PaymentDetails(int id, String paymentMethod, String transactionStatus, PaymentType paymentType) {
         super(id, "Payment");
         this.paymentMethod = paymentMethod;
         this.transactionStatus = transactionStatus;
+        this.paymentType = paymentType;
     }
 
     public String getPaymentMethod() {
@@ -27,6 +30,14 @@ public class PaymentDetails extends OrderDetail implements Payable {
 
     public void setTransactionStatus(String transactionStatus) {
         this.transactionStatus = transactionStatus;
+    }
+
+    public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 
     @Override

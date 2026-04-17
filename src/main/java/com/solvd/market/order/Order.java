@@ -1,6 +1,7 @@
 package com.solvd.market.order;
 
 import com.solvd.market.customer.Customer;
+import com.solvd.market.enums.OrderStatus;
 import com.solvd.market.exceptions.EmptyCartException;
 import com.solvd.market.exceptions.PaymentException;
 import com.solvd.market.interfaces.Payable;
@@ -19,9 +20,10 @@ public class Order {
     private List<OrderItem> orderItems;
     private Customer customer;
     private LocalDateTime localDateTime;
+    private OrderStatus orderStatus;
 
     public Order(LocalDateTime localDateTime, Customer customer, List<OrderItem> orderItems,
-                 Shippable shippingDetails, Payable paymentDetails) {
+                 Shippable shippingDetails, Payable paymentDetails, OrderStatus orderStatus) {
         if (orderItems == null || orderItems.isEmpty()) {
             throw new EmptyCartException("You cannot create an order with zero items");
         }
@@ -30,6 +32,7 @@ public class Order {
         this.orderItems = orderItems;
         this.shippingDetails = shippingDetails;
         this.paymentDetails = paymentDetails;
+        this.orderStatus = orderStatus;
         totalOrdersPlaced++;
     }
 
@@ -88,6 +91,14 @@ public class Order {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     @Override

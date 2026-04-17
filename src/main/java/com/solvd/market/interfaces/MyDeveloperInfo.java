@@ -9,5 +9,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface MyDeveloperInfo {
     String developerName() default "Unknown";
+
     int version() default 1;
+
 }

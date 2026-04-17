@@ -1,15 +1,15 @@
 package com.solvd.market.customer;
 
-import com.solvd.market.customer.Address;
-import com.solvd.market.customer.ContactInfo;
+import com.solvd.market.enums.DiscountTier;
 import com.solvd.market.exceptions.InvalidAgeException;
 
 public class Customer extends Person {
 
     private Address address;
     private int age;
+    private DiscountTier discountTier;
 
-    public Customer(String name, String surname, Address address, ContactInfo contactInfo, int age) {
+    public Customer(String name, String surname, Address address, ContactInfo contactInfo, int age, DiscountTier discountTier) {
         super(name, surname, contactInfo);
 
         if (age < 18) {
@@ -18,7 +18,7 @@ public class Customer extends Person {
 
         this.address = address;
         this.age = age;
-
+        this.discountTier = discountTier;
     }
 
     public String getName() {
@@ -62,5 +62,11 @@ public class Customer extends Person {
         this.contactInfo = contactInfo;
     }
 
+    public DiscountTier getDiscountTier() {
+        return discountTier;
+    }
 
+    public void setDiscountTier(DiscountTier discountTier) {
+        this.discountTier = discountTier;
+    }
 }

@@ -6,4 +6,5 @@ import com.solvd.market.order.OrderItem;
 public interface ItemValidator {
 
     boolean validate(OrderItem item);
+
 }

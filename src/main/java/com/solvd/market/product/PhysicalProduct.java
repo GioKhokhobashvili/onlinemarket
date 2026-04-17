@@ -1,15 +1,21 @@
 package com.solvd.market.product;
 
+import com.solvd.market.enums.ProductCondition;
 import com.solvd.market.interfaces.MyDeveloperInfo;
 import com.solvd.market.interfaces.Taxable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 
 public class PhysicalProduct extends Product implements Taxable {
+
+    private static final Logger LOGGER = LogManager.getLogger(PhysicalProduct.class);
+
     private double weightInKg;
 
-    public PhysicalProduct(String name, BigDecimal price, Category category, Manufacturer manufacturer, double weightInKg) {
-        super(name, price, category, manufacturer);
+    public PhysicalProduct(String name, BigDecimal price, Category category, Manufacturer manufacturer, double weightInKg, ProductCondition condition) {
+        super(name, price, category, manufacturer, condition);
         this.weightInKg = weightInKg;
     }
 
@@ -18,13 +24,16 @@ public class PhysicalProduct extends Product implements Taxable {
 
     @Override
     public void printProductDetails() {
-        System.out.println("Physical Product: " + getName() + " | Weight: " + weightInKg + "kg");
+        LOGGER.info("Physical Product: {} | Weight: {}kg", getName(), weightInKg);
     }
 
     @Override
-    @MyDeveloperInfo(developerName = "Giorgi", version = 2)
+    @MyDeveloperInfo(
+            developerName = "Giorgi",
+            version = 2
+    )
     public void display() {
-        System.out.println(getName() + " - " + getPrice());
+        LOGGER.info("{} - {}", getName(), getPrice());
     }
 
     @Override

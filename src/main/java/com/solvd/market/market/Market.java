@@ -1,11 +1,15 @@
 package com.solvd.market.market;
 
 import com.solvd.market.order.Order;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Market implements AutoCloseable {
+
+    private static final Logger LOGGER = LogManager.getLogger(Market.class);
 
     private String name;
     private Set<Order> orders;
@@ -33,6 +37,6 @@ public class Market implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
-        System.out.println("Closed Safely");
+        LOGGER.info("Market '{}' closed safely", name);
     }
 }
