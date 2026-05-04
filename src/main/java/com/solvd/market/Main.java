@@ -10,6 +10,9 @@ import com.solvd.market.order.Order;
 import com.solvd.market.order.OrderItem;
 import com.solvd.market.order.PaymentDetails;
 import com.solvd.market.order.ShippingDetails;
+import com.solvd.market.parser.JacksonMarketParser;
+import com.solvd.market.parser.JaxbMarketParser;
+import com.solvd.market.parser.SaxMarketParser;
 import com.solvd.market.product.*;
 import com.solvd.market.util.WordCounter;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +33,7 @@ public class Main {
 
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Category electronics = new Category("Electronics", "Devices");
         Manufacturer apple = new Manufacturer("Apple", "USA");
         Product laptop = new PhysicalProduct("Macbook Pro", new BigDecimal("1999.99"), electronics, apple, 2.5, ProductCondition.NEW);
@@ -96,6 +99,10 @@ public class Main {
                 "src/main/resources/book.txt",
                 "src/main/resources/result.txt"
         );
+
+        new SaxMarketParser().parse("src/main/resources/market.xml");
+        new JaxbMarketParser().parse("src/main/resources/market.xml");
+        new JacksonMarketParser().parse("src/main/resources/market.json");
     }
 
     public static void runReflection() {

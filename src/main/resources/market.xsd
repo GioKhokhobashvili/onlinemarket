@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="market" type="MarketType"/>
+
+    <xs:complexType name="MarketType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="orders" type="OrdersType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrdersType">
+        <xs:sequence>
+            <xs:element name="order" type="OrderType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrderType">
+        <xs:sequence>
+            <xs:element name="orderDateTime" type="xs:dateTime"/>
+            <xs:element name="status" type="OrderStatusEnum"/>
+            <xs:element name="customer" type="CustomerType"/>
+            <xs:element name="orderItems" type="OrderItemsType"/>
+            <xs:element name="shippingDetails" type="ShippingDetailsType"/>
+            <xs:element name="paymentDetails" type="PaymentDetailsType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="OrderStatusEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING"/>
+            <xs:enumeration value="PROCESSING"/>
+            <xs:enumeration value="SHIPPED"/>
+            <xs:enumeration value="DELIVERED"/>
+            <xs:enumeration value="CANCELLED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="CustomerType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="surname" type="xs:string"/>
+            <xs:element name="age" type="xs:integer"/>
+            <xs:element name="discountTier" type="DiscountTierEnum"/>
+            <xs:element name="address" type="AddressType"/>
+            <xs:element name="contactInfo" type="ContactInfoType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="DiscountTierEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="SILVER"/>
+            <xs:enumeration value="GOLD"/>
+            <xs:enumeration value="PLATINUM"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="street" type="xs:string"/>
+            <xs:element name="zipCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContactInfoType">
+        <xs:sequence>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="phone" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrderItemsType">
+        <xs:sequence>
+            <xs:element name="orderItem" type="OrderItemType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrderItemType">
+        <xs:sequence>
+            <xs:element name="quantity" type="xs:positiveInteger"/>
+            <xs:element name="product" type="ProductType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProductType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="price" type="xs:decimal"/>
+            <xs:element name="condition" type="ProductConditionEnum"/>
+            <xs:element name="inStock" type="xs:boolean"/>
+            <xs:element name="category" type="CategoryType"/>
+            <xs:element name="manufacturer" type="ManufacturerType"/>
+        </xs:sequence>
+        <xs:anyAttribute namespace="##other" processContents="lax"/>
+    </xs:complexType>
+
+    <xs:complexType name="physicalProduct">
+        <xs:complexContent>
+            <xs:extension base="ProductType">
+                <xs:sequence>
+                    <xs:element name="weightInKg" type="xs:decimal"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="digitalProduct">
+        <xs:complexContent>
+            <xs:extension base="ProductType">
+                <xs:sequence>
+                    <xs:element name="downloadLink" type="xs:anyURI"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="ProductConditionEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NEW"/>
+            <xs:enumeration value="USED"/>
+            <xs:enumeration value="REFURBISHED"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="CategoryType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ManufacturerType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="country" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ShippingDetailsType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="courierName" type="xs:string"/>
+            <xs:element name="trackingNumber" type="xs:string"/>
+            <xs:element name="shippingMethod" type="ShippingMethodEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ShippingMethodEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="EXPRESS"/>
+            <xs:enumeration value="PICKUP"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="PaymentDetailsType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:integer"/>
+            <xs:element name="paymentMethod" type="xs:string"/>
+            <xs:element name="transactionStatus" type="xs:string"/>
+            <xs:element name="paymentType" type="PaymentTypeEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="PaymentTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CASH"/>
+            <xs:enumeration value="CREDIT_CARD"/>
+            <xs:enumeration value="CRYPTO"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

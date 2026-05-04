@@ -1,0 +1,76 @@
+{
+  "name": "Amazon Georgia",
+  "orders": [
+    {
+      "orderDateTime": "2025-05-04T14:30:00",
+      "status": "PENDING",
+      "customer": {
+        "name": "Giorgi",
+        "surname": "Khokh",
+        "age": 25,
+        "discountTier": "GOLD",
+        "address": {
+          "city": "Tbilisi",
+          "street": "Kartozia",
+          "zipCode": "0163"
+        },
+        "contactInfo": {
+          "email": "giorgi@gmail.com",
+          "phone": "555"
+        }
+      },
+      "orderItems": [
+        {
+          "quantity": 2,
+          "product": {
+            "type": "physicalProduct",
+            "name": "Macbook Pro",
+            "price": 1999.99,
+            "condition": "NEW",
+            "inStock": true,
+            "weightInKg": 2.5,
+            "category": {
+              "name": "Electronics",
+              "description": "Devices"
+            },
+            "manufacturer": {
+              "name": "Apple",
+              "country": "USA"
+            }
+          }
+        },
+        {
+          "quantity": 1,
+          "product": {
+            "type": "digitalProduct",
+            "name": "Windows 11",
+            "price": 139.99,
+            "condition": "NEW",
+            "inStock": true,
+            "downloadLink": "https://microsoft.com/download/windows11",
+            "category": {
+              "name": "Electronics",
+              "description": "Devices"
+            },
+            "manufacturer": {
+              "name": "Microsoft",
+              "country": "USA"
+            }
+          }
+        }
+      ],
+      "shippingDetails": {
+        "id": 1,
+        "courierName": "FedEx",
+        "trackingNumber": "GJE123",
+        "shippingMethod": "EXPRESS"
+      },
+      "paymentDetails": {
+        "id": 2,
+        "paymentMethod": "Credit Card",
+        "transactionStatus": "Approved",
+        "paymentType": "CREDIT_CARD"
+      }
+    }
+  ]
+}

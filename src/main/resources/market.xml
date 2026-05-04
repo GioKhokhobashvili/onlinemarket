@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<market xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="market.xsd">
+    <name>Amazon Georgia</name>
+    <orders>
+        <order>
+            <orderDateTime>2025-05-04T14:30:00</orderDateTime>
+            <status>PENDING</status>
+            <customer>
+                <name>Giorgi</name>
+                <surname>Khokh</surname>
+                <age>25</age>
+                <discountTier>GOLD</discountTier>
+                <address>
+                    <city>Tbilisi</city>
+                    <street>Kartozia</street>
+                    <zipCode>0163</zipCode>
+                </address>
+                <contactInfo>
+                    <email>giorgi@gmail.com</email>
+                    <phone>555</phone>
+                </contactInfo>
+            </customer>
+            <orderItems>
+                <orderItem>
+                    <quantity>2</quantity>
+                    <product xsi:type="physicalProduct">
+                        <name>Macbook Pro</name>
+                        <price>1999.99</price>
+                        <condition>NEW</condition>
+                        <inStock>true</inStock>
+                        <category>
+                            <name>Electronics</name>
+                            <description>Devices</description>
+                        </category>
+                        <manufacturer>
+                            <name>Apple</name>
+                            <country>USA</country>
+                        </manufacturer>
+                        <weightInKg>2.5</weightInKg>
+                    </product>
+                </orderItem>
+                <orderItem>
+                    <quantity>1</quantity>
+                    <product xsi:type="digitalProduct">
+                        <name>Windows 11</name>
+                        <price>139.99</price>
+                        <condition>NEW</condition>
+                        <inStock>true</inStock>
+                        <category>
+                            <name>Electronics</name>
+                            <description>Devices</description>
+                        </category>
+                        <manufacturer>
+                            <name>Microsoft</name>
+                            <country>USA</country>
+                        </manufacturer>
+                        <downloadLink>https://microsoft.com/download/windows11</downloadLink>
+                    </product>
+                </orderItem>
+            </orderItems>
+            <shippingDetails>
+                <id>1</id>
+                <courierName>FedEx</courierName>
+                <trackingNumber>GJE123</trackingNumber>
+                <shippingMethod>EXPRESS</shippingMethod>
+            </shippingDetails>
+            <paymentDetails>
+                <id>2</id>
+                <paymentMethod>Credit Card</paymentMethod>
+                <transactionStatus>Approved</transactionStatus>
+                <paymentType>CREDIT_CARD</paymentType>
+            </paymentDetails>
+        </order>
+    </orders>
+</market>
