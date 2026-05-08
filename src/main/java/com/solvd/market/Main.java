@@ -14,6 +14,9 @@ import com.solvd.market.parser.JacksonMarketParser;
 import com.solvd.market.parser.JaxbMarketParser;
 import com.solvd.market.parser.SaxMarketParser;
 import com.solvd.market.product.*;
+import com.solvd.market.threads.CompletableFutureDemo;
+import com.solvd.market.threads.ConnectionPoolDemo;
+import com.solvd.market.threads.ThreadDemo;
 import com.solvd.market.util.WordCounter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -100,9 +103,13 @@ public class Main {
                 "src/main/resources/result.txt"
         );
 
-        new SaxMarketParser().parse("src/main/resources/market.xml");
+        Market saxMarket = new SaxMarketParser().parse("src/main/resources/market.xml");
         new JaxbMarketParser().parse("src/main/resources/market.xml");
         new JacksonMarketParser().parse("src/main/resources/market.json");
+
+        ThreadDemo.runThreadExamples(saxMarket);
+        ConnectionPoolDemo.runConnectionPoolDemo();
+        CompletableFutureDemo.runCompletableFutures(saxMarket);
     }
 
     public static void runReflection() {
